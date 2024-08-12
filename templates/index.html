@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License Plate Recognition</title>
+    <style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Premium blue gradient */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Add padding to ensure the container isn't touching the viewport edges */
+    box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #e0e0e0;
+    position: relative;
+    z-index: 1;
+}
+
+       
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+            padding: 12px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #f7f7f7;
+            transition: border-color 0.3s ease;
+        }
+        input[type="file"]:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 14px 28px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+            border: 4px solid #007bff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #333;
+            margin-top: 30px;
+            font-size: 2em;
+            text-align: center;
+            font-weight: 500;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        p {
+            text-align: center;
+            font-size: 1.3em;
+            color: #555;
+            margin-top: 10px;
+            line-height: 1.6;
+            padding: 15px;
+            background: #f1f1f1;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            white-space: pre-wrap; /* Preserve whitespace formatting */
+        }
+        .extracted-text-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+        .extracted-text-container span {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>License Plate Recognition</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="Upload">
+        </form>
+        {% if straightened_image %}
+        <h2>License Plate</h2>
+        <img src="{{ straightened_image }}" alt="Straightened License Plate">
+        {% endif %}
+        {% if extracted_text %}
+        <div class="extracted-text-container">
+            <!-- <h2>Extracted Text</h2> -->
+            <span>Characters Recognized:</span>
+            <p>{{ extracted_text }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
